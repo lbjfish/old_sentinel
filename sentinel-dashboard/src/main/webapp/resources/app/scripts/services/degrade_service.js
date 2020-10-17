@@ -70,6 +70,7 @@ app.service('DegradeService', ['$http', function ($http) {
           return false;
       }
       if (rule.statIntervalMs == undefined || rule.statIntervalMs <= 0) {
+          console.log("bbb=" + e.statIntervalMs);
           alert('统计窗口时长需大于 0s');
           return false;
       }

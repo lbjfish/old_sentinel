@@ -2,13 +2,14 @@ server:
   port: 8090
 spring:
   application:
-    name: spring-cloud-gateway
+    name: sparing-cloud-gteway
   cloud:
     gateway:
       enabled: true
       discovery:
         locator:
           lower-case-service-id: true
+          enabled: true
       routes:
         # Add your routes here.
         - id: aliyun_route
@@ -21,3 +22,10 @@ spring:
             - Path=/httpbin/**
           filters:
             - RewritePath=/httpbin/(?<segment>.*), /$\{segment}
+
+        - id: gateway-provider
+          uri: lb://gateway-provider
+          predicates:
+            - Path=/gprovider/**
+          filters:
+            - StripPrefix=1

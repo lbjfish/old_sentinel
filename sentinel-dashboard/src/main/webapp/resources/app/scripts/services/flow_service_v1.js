@@ -38,35 +38,16 @@ app.service('FlowServiceV1', ['$http', function ($http) {
     };
 
     this.saveRule = function (rule) {
-        var param = {
-            id: rule.id,
-            resource: rule.resource,
-            limitApp: rule.limitApp,
-            grade: rule.grade,
-            count: rule.count,
-            strategy: rule.strategy,
-            refResource: rule.refResource,
-            controlBehavior: rule.controlBehavior,
-            warmUpPeriodSec: rule.warmUpPeriodSec,
-            maxQueueingTimeMs: rule.maxQueueingTimeMs,
-        };
-
         return $http({
-            url: '/v1/flow/save.json',
-            params: param,
+            url: '/v1/flow/rule/' + rule.id,
+            data: rule,
             method: 'PUT'
         });
     };
 
     this.deleteRule = function (rule) {
-        var param = {
-            id: rule.id,
-            app: rule.app
-        };
-
         return $http({
-            url: '/v1/flow/delete.json',
-            params: param,
+            url: '/v1/flow/rule/' + rule.id,
             method: 'DELETE'
         });
     };
